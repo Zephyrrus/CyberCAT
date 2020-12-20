@@ -26,6 +26,21 @@ namespace CyberCAT.Forms
             {
                 Directory.CreateDirectory(Constants.FileStructure.OUTPUT_FOLDER_NAME);
             }
+
+            openSaveFile.InitialDirectory = System.IO.Path.Combine(KnownFolderPathHelper.GetSavedGamesPath(), "CD Projekt Red\\Cyberpunk 2077");
+            openSaveFile.FileName = "sav.dat";
+            openSaveFile.Filter = "Cyberpunk save|sav.dat|All files (*.*)|*.*";
+            openSaveFile.DefaultExt = ".dat";
+
+            openDecompressedSaveFile.InitialDirectory = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Constants.FileStructure.OUTPUT_FOLDER_NAME);
+            openDecompressedSaveFile.FileName = "";
+            openDecompressedSaveFile.Filter = "Decompressed save|*.bin|All files (*.*)|*.*";
+            openDecompressedSaveFile.DefaultExt = ".bin";
+
+            openMetaInfo.InitialDirectory = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Constants.FileStructure.OUTPUT_FOLDER_NAME);
+            openMetaInfo.FileName = "";
+            openMetaInfo.Filter = "metainf|*.json|All files (*.*)|*.*";
+            openMetaInfo.DefaultExt = ".json";
         }
 
         private void uncompressButton_Click(object sender, EventArgs e)
@@ -157,6 +172,48 @@ namespace CyberCAT.Forms
                
 
             
+        }
+
+        private void decompressFilePathTextbox_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (openSaveFile.ShowDialog() == DialogResult.OK)
+            {
+                decompressFilePathTextbox.Text = openSaveFile.FileName;
+            }
+        }
+
+        private void recompressFilePathTextbox_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (openDecompressedSaveFile.ShowDialog() == DialogResult.OK)
+            {
+                recompressFilePathTextbox.Text = openDecompressedSaveFile.FileName;
+                try
+                {
+                    var selectedPath = openDecompressedSaveFile.FileName;
+
+                    var folderPath = Path.GetDirectoryName(selectedPath);
+                    var fileName = Path.GetFileNameWithoutExtension(selectedPath);
+
+                    var uuid = fileName.Split('_').First();
+
+                    var potentialMetaFilePath = Path.Combine(folderPath, $"{uuid}_{Constants.FileStructure.METAINFORMATION_SUFFIX}.{Constants.FileExtensions.JSON}");
+                    if (File.Exists(potentialMetaFilePath))
+                    {
+                        metaInformationFilePathTextbox.Text = potentialMetaFilePath;
+                    }
+                } catch(Exception exp)
+                {
+                    MessageBox.Show(exp.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void metaInformationFilePathTextbox_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (openMetaInfo.ShowDialog() == DialogResult.OK)
+            {
+                metaInformationFilePathTextbox.Text = openMetaInfo.FileName;
+            }
         }
     }
 }

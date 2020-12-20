@@ -42,35 +42,37 @@
             this.loadAppearanceSectionButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.appearanceUncompressedSaveFilePathTextbox = new System.Windows.Forms.TextBox();
+            this.openSaveFile = new System.Windows.Forms.OpenFileDialog();
+            this.openDecompressedSaveFile = new System.Windows.Forms.OpenFileDialog();
+            this.openMetaInfo = new System.Windows.Forms.OpenFileDialog();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(776, 426);
+            this.tabControl1.Size = new System.Drawing.Size(531, 225);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.label3);
-            this.tabPage1.Controls.Add(this.metaInformationFilePathTextbox);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.recompressFilePathTextbox);
-            this.tabPage1.Controls.Add(this.recompressButton);
-            this.tabPage1.Controls.Add(this.decompressFilePathTextbox);
-            this.tabPage1.Controls.Add(this.uncompressButton);
+            this.tabPage1.Controls.Add(this.groupBox2);
+            this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(768, 400);
+            this.tabPage1.Size = new System.Drawing.Size(523, 199);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -78,7 +80,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(7, 113);
+            this.label3.Location = new System.Drawing.Point(7, 55);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(95, 13);
             this.label3.TabIndex = 8;
@@ -87,17 +89,18 @@
             // metaInformationFilePathTextbox
             // 
             this.metaInformationFilePathTextbox.AllowDrop = true;
-            this.metaInformationFilePathTextbox.Location = new System.Drawing.Point(6, 129);
+            this.metaInformationFilePathTextbox.Location = new System.Drawing.Point(6, 71);
             this.metaInformationFilePathTextbox.Name = "metaInformationFilePathTextbox";
             this.metaInformationFilePathTextbox.Size = new System.Drawing.Size(407, 20);
             this.metaInformationFilePathTextbox.TabIndex = 7;
+            this.metaInformationFilePathTextbox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.metaInformationFilePathTextbox_MouseClick);
             this.metaInformationFilePathTextbox.DragDrop += new System.Windows.Forms.DragEventHandler(this.metaInformationFilePathTextbox_DragDrop);
             this.metaInformationFilePathTextbox.DragEnter += new System.Windows.Forms.DragEventHandler(this.metaInformationFilePathTextbox_DragEnter);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 74);
+            this.label2.Location = new System.Drawing.Point(7, 16);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(125, 13);
             this.label2.TabIndex = 6;
@@ -106,7 +109,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 7);
+            this.label1.Location = new System.Drawing.Point(6, 16);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 13);
             this.label1.TabIndex = 5;
@@ -115,16 +118,17 @@
             // recompressFilePathTextbox
             // 
             this.recompressFilePathTextbox.AllowDrop = true;
-            this.recompressFilePathTextbox.Location = new System.Drawing.Point(6, 90);
+            this.recompressFilePathTextbox.Location = new System.Drawing.Point(6, 32);
             this.recompressFilePathTextbox.Name = "recompressFilePathTextbox";
             this.recompressFilePathTextbox.Size = new System.Drawing.Size(407, 20);
             this.recompressFilePathTextbox.TabIndex = 4;
+            this.recompressFilePathTextbox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.recompressFilePathTextbox_MouseClick);
             this.recompressFilePathTextbox.DragDrop += new System.Windows.Forms.DragEventHandler(this.recompressFilePathTextbox_DragDrop);
             this.recompressFilePathTextbox.DragEnter += new System.Windows.Forms.DragEventHandler(this.recompressFilePathTextbox_DragEnter);
             // 
             // recompressButton
             // 
-            this.recompressButton.Location = new System.Drawing.Point(419, 129);
+            this.recompressButton.Location = new System.Drawing.Point(419, 71);
             this.recompressButton.Name = "recompressButton";
             this.recompressButton.Size = new System.Drawing.Size(75, 23);
             this.recompressButton.TabIndex = 3;
@@ -135,17 +139,18 @@
             // decompressFilePathTextbox
             // 
             this.decompressFilePathTextbox.AllowDrop = true;
-            this.decompressFilePathTextbox.Location = new System.Drawing.Point(6, 27);
+            this.decompressFilePathTextbox.Location = new System.Drawing.Point(5, 36);
             this.decompressFilePathTextbox.Name = "decompressFilePathTextbox";
             this.decompressFilePathTextbox.Size = new System.Drawing.Size(407, 20);
             this.decompressFilePathTextbox.TabIndex = 2;
+            this.decompressFilePathTextbox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.decompressFilePathTextbox_MouseClick);
             this.decompressFilePathTextbox.TextChanged += new System.EventHandler(this.decompressFilePathTextbox_TextChanged);
             this.decompressFilePathTextbox.DragDrop += new System.Windows.Forms.DragEventHandler(this.decompressFilePathTextbox_DragDrop);
             this.decompressFilePathTextbox.DragEnter += new System.Windows.Forms.DragEventHandler(this.decompressFilePathTextbox_DragEnter);
             // 
             // uncompressButton
             // 
-            this.uncompressButton.Location = new System.Drawing.Point(419, 25);
+            this.uncompressButton.Location = new System.Drawing.Point(418, 34);
             this.uncompressButton.Name = "uncompressButton";
             this.uncompressButton.Size = new System.Drawing.Size(75, 23);
             this.uncompressButton.TabIndex = 0;
@@ -195,19 +200,52 @@
             this.appearanceUncompressedSaveFilePathTextbox.DragDrop += new System.Windows.Forms.DragEventHandler(this.appearanceUncompressedSaveFilePathTextbox_DragDrop);
             this.appearanceUncompressedSaveFilePathTextbox.DragEnter += new System.Windows.Forms.DragEventHandler(this.appearanceUncompressedSaveFilePathTextbox_DragEnter);
             // 
+            // openMetaInfo
+            // 
+            this.openMetaInfo.FileName = "openFileDialog1";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.uncompressButton);
+            this.groupBox1.Controls.Add(this.decompressFilePathTextbox);
+            this.groupBox1.Location = new System.Drawing.Point(6, 6);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(505, 71);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Decompress save file";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.recompressFilePathTextbox);
+            this.groupBox2.Controls.Add(this.recompressButton);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.metaInformationFilePathTextbox);
+            this.groupBox2.Location = new System.Drawing.Point(6, 83);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(505, 106);
+            this.groupBox2.TabIndex = 10;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Recompress save";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(531, 225);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "CyberCAT";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -228,6 +266,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox appearanceUncompressedSaveFilePathTextbox;
         private System.Windows.Forms.Button loadAppearanceSectionButton;
+        private System.Windows.Forms.OpenFileDialog openSaveFile;
+        private System.Windows.Forms.OpenFileDialog openDecompressedSaveFile;
+        private System.Windows.Forms.OpenFileDialog openMetaInfo;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
 
